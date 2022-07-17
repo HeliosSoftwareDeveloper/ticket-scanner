@@ -1,0 +1,86 @@
+ext.deps = [:]
+
+
+def versions = [:]
+
+// Plugins
+versions.androidGradlePlugin = "4.0.2"
+
+// Kotlin
+versions.kotlin = "1.4.10"
+
+// Android
+versions.appcompat = "1.2.0"
+versions.constraintLayout = "2.0.4"
+versions.recyclerView = "1.1.0"
+versions.lifecycle = "2.1.0"
+versions.coreKtx = "1.3.2"
+
+// Google
+versions.design = "1.2.1"
+versions.adsPlayServices = "19.6.0"
+
+// Test
+versions.jUnit = "4.12"
+versions.testRunner = "1.2.0"
+versions.androidxTestCore = "3.2.0"
+
+// Rx
+versions.rxJava = "3.1.3"
+versions.rxAndroid = "3.0.0"
+
+// Navigation
+versions.navigation = "2.5.0"
+
+ext.versions = versions
+
+def buildVersions = [:]
+    buildVersions.minSdk = 16
+    buildVersions.compileSdk = 30
+    buildVersions.targetSdk = 30
+ext.buildVersions = buildVersions
+
+
+def deps = [:]
+    deps.androidGradlePlugin = "com.android.tools.build:gradle:$versions.androidGradlePlugin"
+    deps.kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+
+ext.deps = deps
+
+
+def kotlin = [:]
+    kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
+    kotlin.reflect = "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
+deps.kotlin = kotlin
+
+
+def androidX = [:]
+    androidX.constraintLayout = "androidx.constraintlayout:constraintlayout:$versions.constraintLayout"
+    androidX.recyclerview = "androidx.recyclerview:recyclerview:$versions.recyclerView"
+    androidX.design = "com.google.android.material:material:$versions.design"
+    androidX.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
+    androidX.coreKtx = "androidx.core:core-ktx:$versions.coreKtx"
+    androidX.navigationKtx = "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
+    androidX.navigationUiKtx = "androidx.navigation:navigation-ui-ktx:$versions.navigation"
+
+    def lifecycle = [:]
+        lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+        lifecycle.compiler = "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
+        lifecycle.viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+        lifecycle.reactiveStreams = "androidx.lifecycle:lifecycle-reactivestreams-ktx:$versions.lifecycle"
+    androidX.lifecycle = lifecycle
+
+deps.androidX = androidX
+
+
+def rxJava3 = [:]
+    rxJava3.java = "io.reactivex.rxjava3:rxjava:$versions.rxJava"
+    rxJava3.android = "io.reactivex.rxjava3:rxandroid:$versions.rxAndroid"
+deps.rxJava3 = rxJava3
+
+
+def test = [:]
+    test.jUnit = "junit:junit:$versions.jUnit"
+    test.testRunner = "androidx.test:runner:$versions.testRunner"
+    test.androidxTestCore = "androidx.test.espresso:espresso-core:$versions.androidxTestCore"
+deps.test = test

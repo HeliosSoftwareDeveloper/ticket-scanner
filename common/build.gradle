@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
@@ -16,13 +16,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.heliossoftwaredeveloper.ticketscanner"
         minSdk 24
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -41,7 +39,6 @@ android {
 }
 
 dependencies {
-    implementation project(':common')
     implementation deps.kotlin.stdlib
     implementation deps.kotlin.reflect
     implementation deps.androidX.appcompat
