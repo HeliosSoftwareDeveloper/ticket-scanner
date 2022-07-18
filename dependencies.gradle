@@ -32,6 +32,12 @@ versions.rxAndroid = "3.0.0"
 // Navigation
 versions.navigation = "2.5.0"
 
+// retrofit
+versions.retrofitVersion = "2.9.0"
+
+// okhttp
+versions.okhttpVersion = "4.10.0"
+
 ext.versions = versions
 
 def buildVersions = [:]
@@ -72,6 +78,17 @@ def androidX = [:]
 
 deps.androidX = androidX
 
+def retrofit = [:]
+retrofit.retrofit = "com.squareup.retrofit2:retrofit:$versions.retrofitVersion"
+retrofit.retrofitRxJava3 = "com.squareup.retrofit2:adapter-rxjava3:$versions.retrofitVersion"
+retrofit.retrofitGson = "com.squareup.retrofit2:converter-gson:$versions.retrofitVersion"
+retrofit.retrofitScalars = "com.squareup.retrofit2:converter-scalars:$versions.retrofitVersion"
+deps.retrofit = retrofit
+
+def okHttp = [:]
+okHttp.okHttp = "com.squareup.okhttp3:okhttp:$versions.okhttpVersion"
+okHttp.okHttpInterceptor = "com.squareup.okhttp3:logging-interceptor:$versions.okhttpVersion"
+deps.okHttp = okHttp
 
 def rxJava3 = [:]
     rxJava3.java = "io.reactivex.rxjava3:rxjava:$versions.rxJava"

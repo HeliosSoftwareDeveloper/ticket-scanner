@@ -5,6 +5,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs'
 }
+apply from: '../secret.gradle'
 
 android {
     compileSdk 32
@@ -23,6 +24,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        releaseApi.each { key, value ->
+            buildConfigField 'String', key, "\"" + value + "\""
+        }
     }
 
     buildTypes {
@@ -31,6 +36,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -53,6 +59,18 @@ dependencies {
     implementation deps.androidX.lifecycle.extensions
     implementation deps.androidX.lifecycle.viewModel
     implementation deps.androidX.lifecycle.reactiveStreams
+    implementation 'com.google.android.gms:play-services-location:20.0.0'
+
+    api deps.androidX.coreKtx
+
+    api deps.retrofit.retrofit
+    api deps.retrofit.retrofitRxJava3
+    api deps.retrofit.retrofitGson
+    api deps.retrofit.retrofitScalars
+
+    api deps.okHttp.okHttp
+    api deps.okHttp.okHttpInterceptor
+
 
     kapt deps.androidX.lifecycle.compiler
 
@@ -75,6 +93,11 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     implementation 'com.android.support:multidex:1.0.3'
+
+    dependencies {
+        implementation('com.journeyapps:zxing-android-embedded:4.3.0') { transitive = false }
+        implementation 'com.google.zxing:core:3.5.0'
+    }
 
     testImplementation deps.test.jUnit
     androidTestImplementation deps.test.testRunner
